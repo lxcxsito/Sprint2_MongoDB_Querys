@@ -36,8 +36,7 @@ db.restaurant.find({"grades.score" : {$gt : 90}})
 
 
 9. Trobar els restaurants amb un score de més de 80 però menys que 100.
-db.restaurant.find({"grades.score" : {$gt : 80 , $lt : 100}})
-
+db.restaurant.find({ grades: {$elemMatch: { score: { $gt: 80, $lt: 100 } }}})
 
 
 10. Trobar els restaurants amb longitud menor que -95.754168.
@@ -45,13 +44,13 @@ db.restaurant.find({"location.coordinates.0" : {$lt : -95.754168}})
 
 
 11. Trobar restaurants que no preparen 'American', amb qualificació > 70 i longitud < -65.754168.
-db.restaurant.find({$and : [{cuisine : {$ne : "American"} , "grades.score" : {$gt : 70} , "location.coordinates.0" : {$lt : -65}}]})
+db.restaurant.find({$and : [{cuisine : {$ne : "American"} , "grades.score" : {$gt : 70} , "location.coordinates.0" : {$lt : -65.754168}}]})
 
 
 
 
 12. El mateix que l'anterior però sense usar operador and.
-db.restaurant.find({cuisine : {$ne : "American"} , "grades.score" : {$gt : 70} , "location.coordinates.0" : {$lt : -65}})
+db.restaurant.find({cuisine : {$ne : "American"} , "grades.score" : {$gt : 70} , "location.coordinates.0" : {$lt : -65.754168}})
 
 
 
